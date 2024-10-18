@@ -4,11 +4,26 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { provideStore } from '@ngrx/store';
+import { DataEffects, dataReducer } from './app/store/data';
+import { provideEffects } from '@ngrx/effects';
+import { isDevMode } from '@angular/core';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideStore({
+      data: dataReducer,
+    }),
+    provideEffects([DataEffects]),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      connectInZone: true,
+    }),
   ],
 });
