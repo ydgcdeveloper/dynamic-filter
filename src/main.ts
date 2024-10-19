@@ -9,7 +9,8 @@ import { DataEffects, dataReducer } from './app/store/data';
 import { provideEffects } from '@ngrx/effects';
 import { isDevMode } from '@angular/core';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { AppInterceptor } from './app/core/interceptors/app.interceptor';
 
 
 bootstrapApplication(AppComponent, {
@@ -27,5 +28,10 @@ bootstrapApplication(AppComponent, {
       connectInZone: true,
     }),
     provideHttpClient(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptor,
+      multi: true,
+    },
   ],
 });

@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+
+  <ion-title class="title">LOGIN</ion-title>
+  <div class="container">
+    <form [formGroup]="loginForm" (submit)="submit()">
+      <ion-item>
+        <ion-input
+          formControlName="username"
+          label="Username"
+          labelPlacement="floating"
+          placeholder="Enter username"
+        ></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input
+          formControlName="password"
+          type="password"
+          label="Password"
+          labelPlacement="floating"
+          placeholder="Enter password"
+        >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+
+      <ion-button class="login-button" type="submit" [disabled]="loginForm.invalid">
+        Log in
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
