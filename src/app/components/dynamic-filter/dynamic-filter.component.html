@@ -1,0 +1,36 @@
+<ion-modal #modal [trigger]="triggerId">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <form [formGroup]="filterForm">
+        @for (item of categories; track $index) {
+        <ion-item class="item-filter">
+          <ion-select [formControlName]="item.name" justify="space-between" [label]="item.name | titlecase">
+            <ion-select-option *ngFor="let option of item.values" [value]="option">
+              {{ option | titlecase }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        }
+      </form>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="modal.dismiss()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="clear(); modal.dismiss()">Clear</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button [strong]="true" (click)="apply(); modal.dismiss()">Apply</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+    <ion-content class="ion-padding"> </ion-content>
+  </ng-template>
+</ion-modal>
