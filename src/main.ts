@@ -9,6 +9,7 @@ import { DataEffects, dataReducer } from './app/store/data';
 import { provideEffects } from '@ngrx/effects';
 import { isDevMode } from '@angular/core';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideHttpClient } from '@angular/common/http';
 
 
 bootstrapApplication(AppComponent, {
@@ -25,5 +26,6 @@ bootstrapApplication(AppComponent, {
       logOnly: !isDevMode(),
       connectInZone: true,
     }),
+    provideHttpClient(),
   ],
 });

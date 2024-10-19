@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
-import { PRODUCTS_DATA } from '../data/data';
-import { of } from 'rxjs';
+import { map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ApiUrls } from '../api-urls';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  getCharacters(params: any) {
+    const queryString = this.convertParamsToQueryString(params);
+    return this.http
+      .get(ApiUrls.characters + '/?' + queryString)
+      .pipe(map((data: any) => data));
+  }
 
-  getProducts() {
-    return of(PRODUCTS_DATA);
+  convertParamsToQueryString(params: any) {
+    return Object.keys(params)
+      .map((key) => key + '=' + params[key])
+      .join('&');
   }
 }
