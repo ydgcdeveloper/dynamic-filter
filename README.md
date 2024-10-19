@@ -69,8 +69,8 @@ El componente `DynamicFilterComponent` es un modal independiente en Ionic-Angula
 ```typescript
 interface FilterCategory {
   name: string;
-  current: string;
   values: string[];
+  current: string | null;
 }
 ```
 
@@ -99,4 +99,3 @@ const filterCategories: FilterCategory [] =   = [
     }
 ]
 ```
->>>>>>> master
