@@ -1,21 +1,33 @@
-export interface ProductItem {
-    id: string;
+export interface Character {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
     name: string;
-    description: string;
-    price: number;
-    duedate: string;
-    category: ProductCategory;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: string[];
+  url: string;
+  created: string;
 }
 
-export interface ProductCategory {
-    id: string;
-    name: string;
+export interface Pagination {
+  count: number;
+  pages: number;
+  next: string | null;
+  prev: string | null;
 }
 
-export enum ProductCategoryEnum {
-    FOOD = 'food',
-    DRINK = 'drink',
-    ELECTRONIC = 'electronic',
-    CLOTHES = 'clothes',
-    OTHER = 'other',
+export interface FilterCategory {
+  name: string;
+  values: string[];
+  current: string | null;
 }
