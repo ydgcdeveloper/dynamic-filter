@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, exhaustMap, map, of} from 'rxjs';
 import * as dataActions from './data.actions';
-import { DataService } from 'src/app/core/services/data.service';
+import { DataService } from 'src/app/core/services/data/data.service';
+import { CommonService } from 'src/app/core/services/common/common.service';
 
 @Injectable()
 export class DataEffects {
@@ -17,7 +18,10 @@ export class DataEffects {
                         })
                     ),
                     catchError((error) =>
-                        of(dataActions.loadCharactersFailure({error}))
+                    {
+                        this.common.presentErrorToast('Error loading characters');
+                        return of(dataActions.loadCharactersFailure({ error }));
+                    }
                     )
                 )
             )
@@ -25,6 +29,7 @@ export class DataEffects {
     });
     constructor(
         private actions$: Actions,
-        private dataService: DataService
+        private dataService: DataService,
+        private common: CommonService
     ) {}
 }
