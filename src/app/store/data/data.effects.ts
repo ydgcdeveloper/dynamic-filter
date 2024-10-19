@@ -6,18 +6,18 @@ import { DataService } from 'src/app/core/services/data.service';
 
 @Injectable()
 export class DataEffects {
-    loadProducts$ = createEffect(() => {
+    loadCharacters$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(dataActions.loadProducts),
-            exhaustMap(() =>
-                this.dataService.getProducts().pipe(
+            ofType(dataActions.loadCharacters),
+            exhaustMap((action) =>
+                this.dataService.getCharacters(action.params).pipe(
                     map((data) =>
-                        dataActions.loadProductsSuccess({
+                        dataActions.loadCharactersSuccess({
                             data
                         })
                     ),
                     catchError((error) =>
-                        of(dataActions.loadProductsFailure({error}))
+                        of(dataActions.loadCharactersFailure({error}))
                     )
                 )
             )

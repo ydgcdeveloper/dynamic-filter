@@ -1,49 +1,51 @@
 import { createReducer, on } from '@ngrx/store';
 import * as dataActions from './data.actions';
-import { ProductItem } from 'src/app/core/types/types';
 
 export const dataFeatureKey = 'data';
 
 export interface DataState {
-  products: {
+  characters: {
     loading: boolean;
-    value: ProductItem[];
+    value: any;
+    pagination: any;
   }
 }
 
 export const initialState: DataState = {
-  products: {
+  characters: {
     loading: false,
     value: [],
-  },
+    pagination: null,
+  }
 };
 
 export const dataReducer = createReducer(
   initialState,
-  on(dataActions.loadProducts, (state): DataState => {
+  on(dataActions.loadCharacters, (state): DataState => {
     return {
       ...state,
-      products: {
-        ...state.products,
+      characters: {
+        ...state.characters,
         loading: true,
       },
     };
   }),
-  on(dataActions.loadProductsSuccess, (state, { data }): DataState => {
+  on(dataActions.loadCharactersSuccess, (state, { data }): DataState => {
     return {
       ...state,
-      products: {
-        value: data,
+      characters: {
+        value: data?.results,
         loading: false,
+        pagination: data?.info,
       },
     };
   }),
   on(
-    dataActions.loadProductsFailure,
+    dataActions.loadCharactersFailure,
     (state): DataState => ({
       ...state,
-      products: {
-        ...state.products,
+      characters: {
+        ...state.characters,
         loading: false,
       },
     })
