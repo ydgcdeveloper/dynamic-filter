@@ -11,6 +11,6 @@ import { alertCircleOutline } from 'ionicons/icons';
 })
 export class AppComponent {
   constructor() {
-    addIcons({ alertCircleOutline }); // Add your icons here
+    addIcons({ alertCircleOutline });
   }
 }
