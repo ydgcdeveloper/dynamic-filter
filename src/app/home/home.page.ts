@@ -98,7 +98,6 @@ export class HomePage extends DestroyComponent implements OnInit {
     if (this.filter) {
       params = { ...params, ...this.filter };
     }
-    console.log('loadCharacters', params);
     this.dataStoreService.loadCharacters(params);
   }
 
