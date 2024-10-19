@@ -5,12 +5,17 @@ export const selectDataState = createFeatureSelector<fromData.DataState>(
   fromData.dataFeatureKey
 );
 
-export const selectAllProducts = createSelector(
+export const selectAllCharacters = createSelector(
   selectDataState,
-  (state) => state.products.value
+  (state) => state.characters.value
 );
 
-export const selectLoadingProducts= createSelector(
+export const selectLoadingCharacters = createSelector(
   selectDataState,
-  (state) => state.products.loading
+  (state) => state.characters.loading
+);
+
+export const selectCharactersPagination = createSelector(
+  selectDataState,
+  (state) => state.characters.pagination
 );
