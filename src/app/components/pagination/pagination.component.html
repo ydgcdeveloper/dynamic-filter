@@ -1,0 +1,22 @@
+<ion-fab
+    *ngIf="showPrevious"
+    horizontal="start"
+    vertical="bottom"
+    slot="fixed"
+    (click)="prevPage()"
+  >
+    <ion-fab-button>
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab
+    *ngIf="showNext"
+    horizontal="end"
+    vertical="bottom"
+    slot="fixed"
+    (click)="nextPage()"
+  >
+    <ion-fab-button>
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
