@@ -1,0 +1,7 @@
+{
+  "name": "dynamic-filter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
