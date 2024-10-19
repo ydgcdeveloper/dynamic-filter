@@ -9,8 +9,7 @@ describe('PaginationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), PaginationComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaginationComponent);
