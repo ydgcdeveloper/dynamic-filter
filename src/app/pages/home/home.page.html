@@ -4,6 +4,11 @@
     @if(loading$| async){
     <ion-progress-bar type="indeterminate" color="tertiary" />
     }
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

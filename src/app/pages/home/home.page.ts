@@ -20,22 +20,27 @@ import {
   IonFab,
   IonSearchbar,
   IonFooter,
-  IonProgressBar, IonChip } from '@ionic/angular/standalone';
-import { DynamicFilterComponent } from '../components/dynamic-filter/dynamic-filter.component';
+  IonProgressBar,
+  IonChip,
+} from '@ionic/angular/standalone';
+import { DynamicFilterComponent } from '../../components/dynamic-filter/dynamic-filter.component';
 import { AsyncPipe, NgForOf, NgIf, TitleCasePipe } from '@angular/common';
-import { DataStoreService } from '../store/data/data-store.service';
-import { Character, Pagination } from '../core/types/types';
-import { DestroyComponent } from '../components/destroy/destroy.component';
+import { DataStoreService } from '../../store/data/data-store.service';
+import { Character, Pagination } from '../../core/types/types';
+import { DestroyComponent } from '../../components/destroy/destroy.component';
 import { Observable, takeUntil } from 'rxjs';
-import { PaginationComponent } from '../components/pagination/pagination.component';
-import { CHARACTERS_CATEGORIES } from '../core/data/data';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { CHARACTERS_CATEGORIES } from '../../core/data/data';
+import { addIcons } from 'ionicons';
+import { logOut, logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonChip, 
+  imports: [
+    IonChip,
     IonProgressBar,
     IonFooter,
     IonSearchbar,
@@ -60,6 +65,7 @@ import { CHARACTERS_CATEGORIES } from '../core/data/data';
     NgIf,
     AsyncPipe,
     TitleCasePipe,
+    IonIcon,
   ],
 })
 export class HomePage extends DestroyComponent implements OnInit {
@@ -79,6 +85,7 @@ export class HomePage extends DestroyComponent implements OnInit {
 
   constructor(private readonly dataStoreService: DataStoreService) {
     super();
+    addIcons({ logOut, logOutOutline });
   }
 
   ngOnInit() {
@@ -146,5 +153,9 @@ export class HomePage extends DestroyComponent implements OnInit {
 
   isCategoryInFilter(category: string) {
     return this.filter && this.filter[category];
+  }
+
+  logOut(){
+    this.dataStoreService.logOut();
   }
 }
