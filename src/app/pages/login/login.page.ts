@@ -60,7 +60,7 @@ export class LoginPage extends DestroyComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.fb.group({
-      username: new FormControl('emilyss', Validators.required),
+      username: new FormControl('emilys', Validators.required),
       password: new FormControl('emilyspass', Validators.required),
     });
   }
@@ -70,7 +70,6 @@ export class LoginPage extends DestroyComponent implements OnInit {
       .pipe(ofType(loginSuccess), takeUntil(this.destroy$))
       .subscribe((res) => {
         if (res?.data) {
-          console.log('loginSuccess', res);
           this.auth.setAuthenticatedUser(res.data);
           this.router.navigate(['/home']);
         }
@@ -79,7 +78,6 @@ export class LoginPage extends DestroyComponent implements OnInit {
     this.actions$
       .pipe(ofType(loginFailure), takeUntil(this.destroy$))
       .subscribe((res) => {
-        console.log('loginFailure', res);
         if (res?.error?.error?.message) {
           this.common.presentErrorToast(res?.error?.error?.message)
         }
