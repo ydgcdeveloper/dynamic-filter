@@ -12,3 +12,7 @@ export const CHARACTERS_CATEGORIES: FilterCategory []  = [
         current: null,
     }
 ]
+
+export const TOKEN_KEY = 'accessToken';
+export const REFRESH_TOKEN_KEY = 'refreshToken';
+export const USER_KEY = 'user';
